@@ -12,17 +12,11 @@
   <img alt="tamanho" src="https://img.shields.io/badge/c%C3%B3digo-300%20linhas-8E8E93?style=flat-square">
 </p>
 
-```
-                               ╭──────────────────────────────╮
-                               │   á    ã    à    â    a    ä │
-                               │   1    2    3    4    5    6 │
-                               ╰──────────────────────────────╯
-   ╭──────────────────────────────────────────────────────────────╮
-   │  tô fazendo a sobremesa   a▏                                 │
-   ╰──────────────────────────────────────────────────────────────╯
-```
+<p align="center">
+  <img src="docs/popup.png" width="608" alt="A janelinha de acentos aberta logo acima da caixa de texto, com as opções de 'a' numeradas de 1 a 9">
+</p>
 
-<!-- Grave um GIF de uns 5 segundos e troque este comentário por: ![demo](docs/demo.gif) -->
+<!-- Um GIF de uns 5 segundos mostrando o gesto fica melhor ainda: troque este comentário por ![demo](docs/demo.gif) -->
 
 ---
 
