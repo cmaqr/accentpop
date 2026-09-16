@@ -61,12 +61,11 @@ linha que você está escrevendo, alinhada pela esquerda com o cursor.
 
 - Mostrar a `Gui` escondida (`Show "Hide AutoSize"`) só para medir, ler o tamanho com `GetPos`,
   e então posicionar: `y = caretY - altura - 6`, `x = caretX`.
-- **Cadeia de fallback para achar o cursor** — `CaretGetPos` ([acentos.ahk:71](acentos.ahk#L71)) falha ou
-  devolve lixo em vários apps (Electron/Chromium é o caso típico, justamente o WhatsApp):
-  1. `CaretGetPos`
-  2. posição do controle com foco (`ControlGetFocus` + `ControlGetPos`)
-  3. canto inferior esquerdo da janela ativa
-  4. posição do mouse (o que o script faz hoje)
+- **Quando não dá para achar o cursor** — `CaretGetPos` falha ou devolve lixo em vários apps
+  (Electron/Chromium é o caso típico, justamente o WhatsApp). Nesses casos a janelinha abre perto
+  do **mouse**. Cheguei a tentar adivinhar pela janela (canto de baixo, onde costuma ficar a barra
+  de digitação), mas palpite que erra manda a janelinha para um lugar que o olho não procura;
+  o mouse pelo menos é um ponto que você sabe onde está.
 - Prender a janelinha na área útil do monitor (`MonitorGetWorkArea`): se não couber acima, abre abaixo;
   se vazar na direita, encosta na borda. Hoje ela pode abrir fora da tela.
 

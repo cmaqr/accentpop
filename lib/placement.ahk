@@ -26,19 +26,13 @@ PlacePopup(caretX, caretY, popupWidth, popupHeight, work) {
 }
 
 ; Posição do cursor de texto, em coordenadas de tela.
-; CaretGetPos falha em app Electron/Chromium (WhatsApp, Discord, navegador), que desenha
-; o próprio cursor e não conta para o Windows — por isso os planos B e C.
+; CaretGetPos falha em app Electron/Chromium (WhatsApp, Discord, navegador), que desenha o
+; próprio cursor e não avisa o Windows. Quando não dá para saber onde o texto está, a janelinha
+; vai para perto do mouse: é um lugar que o olho acha, em vez de um palpite que pode cair longe.
 GetCaretScreenPos() {
     if CaretGetPos(&caretX, &caretY)
         return {x: caretX, y: caretY}
 
-    ; Plano B: parte de baixo da janela ativa. Em app de conversa é onde fica a barra de digitação.
-    if (hwnd := WinExist("A")) {
-        WinGetClientPos(&windowX, &windowY, &windowWidth, &windowHeight, hwnd)
-        return {x: windowX + 12, y: windowY + windowHeight - 40}
-    }
-
-    ; Plano C: o mouse.
     MouseGetPos(&mouseX, &mouseY)
     return {x: mouseX, y: mouseY}
 }

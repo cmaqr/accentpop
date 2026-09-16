@@ -108,5 +108,5 @@ que segurar `a` e escolher `2` deixa só `ã` no campo, e que a janelinha abre a
 
 - Em janela aberta como administrador, o script precisa estar como administrador também. É o Windows
   que bloqueia; não tem contorno.
-- Em app Electron/Chromium o Windows não informa onde está o cursor de texto. Nesses casos a janelinha
-  abre na parte de baixo da janela, que é onde costuma ficar a barra de digitação.
+- Em app Electron/Chromium o Windows não informa onde está o cursor de texto. Sem essa referência a
+  janelinha abre perto do mouse; com ela, abre logo acima da caixinha onde você está escrevendo.
