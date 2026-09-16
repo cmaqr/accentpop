@@ -1,0 +1,34 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # O runner não vem com AutoHotkey. O zip oficial do v2 não precisa de instalador.
+      - name: Baixa o AutoHotkey v2
+        shell: pwsh
+        run: |
+          Invoke-WebRequest https://www.autohotkey.com/download/ahk-v2.zip -OutFile ahk.zip
+          Expand-Archive ahk.zip -DestinationPath ahk
+
+      # AutoHotkey é app de janela: sem Start-Process -Wait o passo termina antes do script.
+      - name: Checa a sintaxe
+        shell: pwsh
+        run: |
+          foreach ($script in 'accents.ahk', 'tests\run_tests.ahk') {
+            $run = Start-Process "$PWD\ahk\AutoHotkey64.exe" -ArgumentList '/ErrorStdOut', '/validate', $script -Wait -PassThru -NoNewWindow
+            if ($run.ExitCode -ne 0) { throw "erro de sintaxe em $script" }
+          }
+
+      - name: Roda os testes
+        shell: pwsh
+        run: |
+          $run = Start-Process "$PWD\ahk\AutoHotkey64.exe" -ArgumentList 'tests\run_tests.ahk' -Wait -PassThru -NoNewWindow
+          exit $run.ExitCode

@@ -1,0 +1,12 @@
+# Saída do compilador (Ahk2Exe). O .exe vai em Releases, nunca no repositório.
+*.exe
+build/
+dist/
+
+# Configuração local, com as preferências de cada máquina
+config.ini
+
+# Lixo do Windows e dos editores
+Thumbs.db
+desktop.ini
+.vscode/
